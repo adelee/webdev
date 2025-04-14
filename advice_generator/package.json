@@ -1,0 +1,17 @@
+{
+  "name": "advice_generator",
+  "version": "1.0.0",
+  "description": "random advice generator",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "adele",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}
