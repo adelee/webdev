@@ -1,0 +1,39 @@
+
+<%- include("partials/header.ejs") %>
+<div class="container">
+    <h1>ADELE B.</h1>
+    <h2>BOOKS I'VE READ</h2>
+    <div id="div-intro">
+        <p>This is a list of books that I've read, including a short comment on each.</p>
+        <p>Sorted with my top recommendations. Sort by <a href="/sort">newest</a> or <a href="/">best</a>.</p>
+    </div>
+    <div id="div-add" class="mb-4 py-2">
+        <form id="form-add" action="/add" method="post">
+            <button id="button-add" class="btn btn-secondary" type="submit">Add a Book</button>
+        </form>
+    </div>
+    <hr />
+    <br />
+    <% for (let i=0; i<books.length; i++) { %>
+        <div id="div-item" class="mb-5 py-5">
+            <img src="<%=`https://covers.openlibrary.org/b/isbn/${books[i].isbn}-M.jpg` %>" alt="book cover image" />
+            <h3><%=books[i].title.toUpperCase() %> - BY <%=books[i].author.toUpperCase() %></h3>
+            <p id="p-date">DATE READ: <%=books[i].date_read.toDateString() %></p>
+            <p id="p-rating">HOW STRONGLY I RECOMMEND IT: <%=books[i].rating %>/10</p>
+            <p><%=books[i].description %></p>
+            <span>
+                <form id="form-edit" action="/edit" method="post">
+                    <input type="hidden" name="editedItemId" value="<%= books[i].id %>">
+                    <button id="button-edit" class="btn btn-primary my-3" type="submit">Update</button>
+                </form>
+                <form id="form-delete" action="/delete" method="post">
+                    <input type="hidden" name="deletedItemId" value="<%= books[i].id %>">
+                    <button id="button-delete" class="btn btn-danger mx-3" type="submit">Delete</button>
+                </form>
+            </span>
+        </div>
+        <br />       
+    <% } %>
+    <br />
+</div>
+<%- include("partials/footer.ejs") %>

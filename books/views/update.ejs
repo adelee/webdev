@@ -1,0 +1,29 @@
+
+<%- include("partials/header.ejs") %>
+<div class="container">
+    <h1>ADELE B.</h1>
+    <h2>UPDATE A BOOK OR ADD A NEW BOOK</h2>
+    <hr />
+    <br /><br />
+    <div id="div-update">
+        <form id="form-update" action="/update" method="post">
+            <% if (action==="Update") { %>
+                <input type="hidden" name="updatedItemId" value="<%=book.id %>">
+            <% } %>
+            <label for="isbn" class="form-label">ISBN: </label>
+            <input type="text" class="form-control mb-4" name="isbn" required value="<%=locals.book ? book.isbn : 'Enter isbn number'%>">
+            <label for="date_read" class="form-label">Date Read: </label>
+            <input type="date" class="form-control mb-4" name="date_read" value="<%=locals.book ? book.date_read : 'Enter date read'%>">
+            <label for="title" class="form-label">Title: </label>
+            <input type="text" class="form-control mb-4" name="title" maxlength="50" value="<%=locals.book ? book.title : 'Enter book title'%>">
+            <label for="author" class="form-label">Author: </label>
+            <input type="text" class="form-control mb-4" name="author" maxlength="50" required value="<%=locals.book ? book.author : 'Enter book author'%>">
+            <label for="description" class="form-label">Comments: </label>
+            <textarea class="form-control mb-4" name="description" rows="5" cols="25"><%=locals.book ? book.description : "" %></textarea>
+            <label for="rating" class="form-label">Book Rating (out of 10): </label>
+            <input type="number" class="form-control mb-4" name="rating" min="0" max="10" required value="<%=locals.book ? book.rating : 0%>">
+            <button id="button-save" class="btn btn-success my-4" type="submit">Save</button>
+        </form>
+    </div>
+</div>
+<%- include("partials/footer.ejs") %>
